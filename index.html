@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SketchWars</title>
+<style type="text/css">
+body {background-color:#292929;}
+.wrapper {
+  width: 384px;
+  height: 512px;
+  margin-left: auto ;
+  margin-right: auto ;
+}
+
+@font-face {
+  font-family: 'Love Ya Like A Sister';
+  src: url('fonts/LoveYaLikeASister.eot'); /* IE9 Compat Modes */
+  src: url('fonts/LoveYaLikeASister.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('fonts/LoveYaLikeASister.woff') format('woff'), /* Modern Browsers */
+       url('fonts/LoveYaLikeASister.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('fonts/LoveYaLikeASister.svg#d9d94e12ee56db779583c646ce71892b') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}	
+</style>
+<script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+<script src="http://code.createjs.com/tweenjs-0.5.0.min.js"></script>
+<script src="http://code.createjs.com/movieclip-0.7.0.min.js"></script>
+<script src="http://code.createjs.com/preloadjs-0.4.0.min.js"></script>
+<script src="http://code.createjs.com/soundjs-0.5.0.min.js"></script>
+<script src="SketchWars.js"></script>
+
+<script>
+var canvas, stage, exportRoot;
+
+function init() {
+	canvas = document.getElementById("canvas");
+	images = images||{};
+
+	var loader = new createjs.LoadQueue(false);
+	loader.installPlugin(createjs.Sound);
+	loader.addEventListener("fileload", handleFileLoad);
+	loader.addEventListener("complete", handleComplete);
+	loader.loadManifest(lib.properties.manifest);
+}
+
+function handleFileLoad(evt) {
+	if (evt.item.type == "image") { images[evt.item.id] = evt.result; }
+}
+
+function handleComplete() {
+	exportRoot = new lib.SketchWars();
+
+	stage = new createjs.Stage(canvas);
+	stage.addChild(exportRoot);
+	stage.update();
+	stage.enableMouseOver();
+
+	createjs.Ticker.setFPS(lib.properties.fps);
+	createjs.Ticker.addEventListener("tick", stage);
+}
+
+function playSound(id, loop) {
+	createjs.Sound.play(id, createjs.Sound.INTERRUPT_EARLY, 0, 0, loop);
+}
+</script>
+</head>
+
+<body onload="init();">
+ 	<div class="wrapper">
+ 		<canvas id="canvas" width="384" height="512" style="background-color:#000000"></canvas>
+ 	</div>
+</body>
+</html>

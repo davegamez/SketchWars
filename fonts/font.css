@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Love Ya Like A Sister';
+  src: url('LoveYaLikeASister.eot'); /* IE9 Compat Modes */
+  src: url('LoveYaLikeASister.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('LoveYaLikeASister.woff') format('woff'), /* Modern Browsers */
+       url('LoveYaLikeASister.ttf')  format('truetype'), /* Safari, Android, iOS */
+       url('LoveYaLikeASister.svg#d9d94e12ee56db779583c646ce71892b') format('svg'); /* Legacy iOS */
+       
+  font-style:   normal;
+  font-weight:  400;
+}
+
